@@ -4,17 +4,26 @@ import notesReducer from "./reducer";
 import Nav from "./components/Nav";
 import AddNote from "./components/AddNote";
 import NoteList from "./components/NoteList";
+import EditNote from "./components/EditNote";
 
 function App() {
   const initialState = useContext(NotesContext);
   const [state, dispatch] = useReducer(notesReducer, initialState);
 
+  console.log(state);
+
   useReducer();
   return (
     <NotesContext.Provider value={{ state, dispatch }}>
       <Nav />
-      <AddNote />
-      <NoteList />
+      {state.currentNote === null ? (
+        <div>
+          <AddNote />
+          <NoteList />
+        </div>
+      ) : (
+        <EditNote />
+      )}
     </NotesContext.Provider>
   );
 }

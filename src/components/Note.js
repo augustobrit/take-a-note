@@ -13,7 +13,11 @@ const Note = ({ note }) => {
         >
           Edit
         </button>
-        <button>Delete</button>
+        <button
+          onClick={() => dispatch({ type: "DELETE_NOTE", payload: note.id })}
+        >
+          Delete
+        </button>
       </div>
     </div>
   );
